@@ -51,3 +51,19 @@ export const uploadPattern = async (req, res) => {
         return res.status(500).json({ error: err.message});
     }
 }
+
+// DELETE Pattern
+
+export const deletePattern = async (req, res) => {
+
+    const pattern = req.body
+
+    try{
+        const patternID = await deletePattern(pattern);
+        res.status(201).json(patternID);
+    } catch (err){
+        return res.status(500).json({ error : err.message })
+    }
+
+
+}

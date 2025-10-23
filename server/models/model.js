@@ -45,3 +45,15 @@ export const postPattern = async (pattern) => {
         throw new Error('Failed to post pattern to database');
     }
 }
+
+export const deletePattern = async (pattern) => {
+
+    try{
+        const dbPattern = await Patterns.destroy(pattern);
+        return dbPattern.pattern_ID;
+    } catch (err) {
+        console.error("Error deleting pattern:", err);
+        throw new Error('Failed to delete pattern from database');
+    }
+
+}
