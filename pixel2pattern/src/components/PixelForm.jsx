@@ -27,7 +27,7 @@ export default function PixelForm() {
     const [ pixelFill, setPixelFill] = useState([]);
 
     const router = useRouter();
-    const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://backend:3001";
+    const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
     useEffect(() => {
         const startPixels = Array(canvasHeight * canvasWidth).fill("#fff");

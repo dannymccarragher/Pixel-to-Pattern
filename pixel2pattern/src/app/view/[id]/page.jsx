@@ -16,7 +16,7 @@ export default function PatternPage({params}) {
     const [patternConfig, setPatternConfig] = useState({});
     const [editView, setEditView] = useState(false);
 
-    const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://backend:3001";
+    const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
     const onCancel = () => {
       setEditView(false);

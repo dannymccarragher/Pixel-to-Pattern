@@ -8,7 +8,7 @@ import PixelDisplay from "@/components/PixelDisplay";
 
 export default function EditablePatternView({ post, onCancel, params}) {
     const { id } = useParams();
-    const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://backend:3001";
+    const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
     const [formData, setFormData] = useState({
     pattern_ID: id,

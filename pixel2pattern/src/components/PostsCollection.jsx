@@ -5,7 +5,7 @@ import Link from "next/link.js";
 export default function PostsCollection() {
 
     const [ pixelPosts, setPixelPosts] = useState([]);
-    const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://backend:3001";
+    const API_URL = process.env.NEXT_PUBLIC_API_URL;
     
     useEffect(() => {
         const fetchPosts = async () => {
