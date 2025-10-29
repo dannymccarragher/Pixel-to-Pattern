@@ -1,4 +1,5 @@
 import dotenv from 'dotenv';
+dotenv.config({ path: './db.env' });
 import { Sequelize } from 'sequelize';
 import path from 'path';
 
