@@ -8,6 +8,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import PatternGenerator from "@/components/PatternGenerator";
 import Button from "@mui/material/Button";
 import EditablePatternView from "@/components/EditablePatternView";
+import DeletePattern from "@/components/DeletePattern";
 
 
 export default function PatternPage({params}) {
@@ -68,6 +69,8 @@ export default function PatternPage({params}) {
 
             <Divider sx={{ width: "80%", mb: 2 }} />
 
+            <DeletePattern id={id} />
+            
             <Typography variant="body1" sx={{ lineHeight: 1.7, textAlign: "justify", color: "text.primary", maxWidth: "90%", }} >
               {post.description}
             </Typography>
