@@ -1,4 +1,4 @@
-import {getAllPatterns, getPattern, postPattern, updatePattern} from '../models/model.js'
+import {getAllPatterns, getPattern, postPattern, updatePattern, deletePattern} from '../models/model.js'
 
 
 export const updatePatternController = async(req, res) => {
@@ -49,5 +49,19 @@ export const uploadPattern = async (req, res) => {
         res.status(201).json(patternID);
     } catch (err) {
         return res.status(500).json({ error: err.message});
+    }
+}
+
+// DELETE Pattern
+
+export const deletePatternById = async (req, res) => {
+
+    const patternID = req.params.id;
+    
+    try{
+        await deletePattern(patternID);
+        res.status(200).json({ message: 'Pattern deleted successfully', pattern_id: patternID });
+    } catch (err){
+        return res.status(500).json({ error : err.message });
     }
 }
