@@ -22,6 +22,16 @@ Users will soon be able to edit their own patterns directly.
 ### Delete  
 Remove any pattern you’ve posted with one click.
 
+### Export to PDF  
+Download a printable crochet pattern PDF including:
+
+- Pattern title
+- Author & date
+- Description
+- Pixel color rows (stitch instructions)
+
+Great for crocheting offline
+
 ## ⚙️ Local Setup
 
 Follow these steps to run **Pixel to Pattern** locally:
