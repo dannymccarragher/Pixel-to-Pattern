@@ -9,7 +9,8 @@ import PatternGenerator from "@/components/PatternGenerator";
 import Button from "@mui/material/Button";
 import EditablePatternView from "@/components/EditablePatternView";
 import DeletePattern from "@/components/DeletePattern";
-
+import jsPDF from "jspdf";
+import PictureAsPdfIcon from "@mui/icons-material/PictureAsPdf";
 
 export default function PatternPage({params}) {
     const { id } = useParams();
@@ -23,9 +24,41 @@ export default function PatternPage({params}) {
       setEditView(false);
     }
     const clickEditButton = () => {
-      console.log("Clicked!");
       setEditView(true);
     }
+
+    const exportPDF = () => {
+      if (!post || !patternConfig) return;
+
+      const doc = new jsPDF();
+      
+      doc.setFontSize(18);
+      doc.text(post.pattern_name, 10, 10);
+
+      doc.setFontSize(12);
+      doc.text(`Author: ${post.author}`, 10, 20);
+      doc.text(`Date: ${post.date?.slice(0,10)}`, 10, 28);
+      doc.text("Description:", 10, 38);
+      doc.text(post.description || "", 10, 46);
+
+      doc.text("Pattern Stitch Rows:", 10, 60);
+      let y = 70;
+
+      const rows = patternConfig?.colorConfig || [];
+      const width = patternConfig?.width || 0;
+
+      for (let i = 0; i < rows.length; i += width) {
+        const rowColors = rows.slice(i, i + width);
+        doc.text(`Row ${i / width + 1}: ${rowColors.join(", ")}`, 10, y);
+        y += 6;
+        if (y > 270) {
+          doc.addPage();
+          y = 10;
+        }
+      }
+
+      doc.save(`${post.pattern_name}.pdf`);
+    };
 
     useEffect(()=> {
         const fetchPost = async () => {
@@ -71,6 +104,18 @@ export default function PatternPage({params}) {
 
             <Divider sx={{ width: "80%", mb: 2 }} />
 
+            {/*Export PDF Button */}
+            <Button 
+              variant="contained"
+              color="primary"
+              startIcon={<PictureAsPdfIcon />}
+              onClick={exportPDF}
+              sx={{ mb: 2 }}
+            >
+              Export PDF
+            </Button>
+
+            {/* Delete Button */}
             <DeletePattern id={id} />
             
             <Typography variant="body1" sx={{ lineHeight: 1.7, textAlign: "justify", color: "text.primary", maxWidth: "90%", }} >
