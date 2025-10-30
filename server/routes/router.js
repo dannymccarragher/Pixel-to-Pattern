@@ -7,6 +7,6 @@ router.get('/patterns', getAll);
 router.get('/patterns/:id', getSpecificPattern);
 router.post('/patterns', uploadPattern);
 router.patch('/update/:id', updatePatternController);
-router.delete('/delete/:id', deletePatternById);
+router.delete('/patterns/:id', deletePatternById);
 
 export default router;
